@@ -18,16 +18,12 @@
 // - (NSInteger)match:(NSArray *)otherCards
 // - (NSString *)contents
 
-/*
- * validSuits:
- * array of strings representing the set of valid suits
- */
+// validSuits:
+// array of strings representing the set of valid suits
 + (NSArray *)validSuits;
 
-/*
- * maxRank:
- * the upper value for the number representing rank values
- */
+// maxRank:
+// the upper value for the number representing rank values
 + (NSUInteger)maxRank;
 
 @end

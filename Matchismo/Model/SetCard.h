@@ -20,36 +20,28 @@
 // - (NSInteger)match:(NSArray *)otherCards
 // - (NSString *)contents
 
-/*
- * validNumbers:
- * array of number representing the set of valid numbers
- *   {1,2,3}: valid numbers
- *         0: not a valid value number
- */
+// validNumbers:
+// array of number representing the set of valid numbers
+//   {1,2,3}: valid numbers
+//         0: not a valid value number
 + (NSArray *)validNumbers;
 
-/*
- * validSymbols:
- * array of strings representing the set of valid symbols
- *   {"diamond","squiggle","oval"}: set of valid symbols
- *                             "?": not a valid string for symbol
- */
+// validSymbols:
+// array of strings representing the set of valid symbols
+//   {"diamond","squiggle","oval"}: set of valid symbols
+//                             "?": not a valid string for symbol
 + (NSArray *)validSymbols;
 
-/*
- * validShadings:
- * array of strings representing the set of valid shadings
- *   {"solid","striped","open"}: set of valid shadings
- *                          "?": not a valid string for shade
- */
+// validShadings:
+// array of strings representing the set of valid shadings
+//   {"solid","striped","open"}: set of valid shadings
+//                          "?": not a valid string for shade
 + (NSArray *)validShadings;
 
-/*
- * validColors:
- * array of strings representing the set of valid colors
- *   {"red","green","purple"}: set of valid colors
- *   "?": not a valid string for color
- */
+// validColors:
+// array of strings representing the set of valid colors
+//   {"red","green","purple"}: set of valid colors
+//   "?": not a valid string for color
 + (NSArray *)validColors;
 
 @end

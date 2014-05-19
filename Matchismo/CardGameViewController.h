@@ -11,8 +11,7 @@
 
 @interface CardGameViewController : UIViewController
 
+// Abstract method to be implemented in concrete class
 - (Deck *)createDeck;
-
--(NSAttributedString *)playDescriptionText:(NSDictionary *)historyEntry;
 
 @end

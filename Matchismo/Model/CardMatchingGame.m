@@ -15,11 +15,6 @@
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, readwrite) NSInteger playScore;
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
-@property (nonatomic, readwrite) NSString *matchPlay;
-@property (nonatomic, readwrite) NSArray *cardsInPlay; // of Card
-@property (nonatomic, strong) NSMutableArray *cardsInPlayMutable; // of Card
-@property (nonatomic, readwrite) NSArray *playHistory;
-@property (nonatomic, strong) NSMutableArray *mutablePlayHistory;
 @end
 
 @implementation CardMatchingGame
@@ -28,39 +23,6 @@
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
-}
-
-- (NSMutableArray *)cardsInPlayMutable
-{
-    if (!_cardsInPlayMutable) _cardsInPlayMutable = [[NSMutableArray alloc] init];
-    return _cardsInPlayMutable;
-}
-
-- (NSMutableArray *)mutablePlayHistory
-{
-    if (!_mutablePlayHistory) _mutablePlayHistory = [[NSMutableArray alloc] init];
-    return _mutablePlayHistory;
-}
-
-- (NSArray *)playHistory
-{
-//    return [self.mutablePlayHistory copy];
-    return self.mutablePlayHistory;
-}
-
-- (NSArray *)cardsInPlay
-{
-    return [self.cardsInPlayMutable copy];
-}
-
-- (void)setMatchPlay:(NSString *)matchPlay
-{
-    if ([matchPlay isEqualToString:@"success"] ||
-        [matchPlay isEqualToString:@"fail"]) {
-        _matchPlay = matchPlay;
-    } else {
-        _matchPlay = nil;
-    }
 }
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
@@ -105,10 +67,6 @@ static const int COST_TO_CHOOSE = 1;
 
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
-    // Reset move description
-    self.matchPlay = nil;
-    self.cardsInPlayMutable = nil;
-    
     // Identify chosen card at given location
     Card *card = [self cardAtIndex:index];
     
@@ -128,16 +86,10 @@ static const int COST_TO_CHOOSE = 1;
         // This card is not already chosen
         } else {
             // Initialize play history variables
-            NSString *matchPlay = @"";
-            NSMutableArray *cardsInPlayMutable = [[NSMutableArray alloc] init];
             // Mark chosen and decrease score (cost of choosing)
             card.chosen = YES;
             self.playScore = COST_TO_CHOOSE;
             self.score -= self.playScore;
-
-            // Add this card to the play
-            [self.cardsInPlayMutable addObject:card];
-            [cardsInPlayMutable addObject:card];
 
             // If there are enough other cards selected for match
             if (listOfOtherChosenCards.count == [card matchCount] - 1) {
@@ -147,8 +99,6 @@ static const int COST_TO_CHOOSE = 1;
                     // Match successful - increase score - update play status
                     self.playScore = matchScore * MATCH_BONUS;
                     self.score += self.playScore;
-                    self.matchPlay = @"success";
-                    matchPlay = @"success";
                     for (Card *otherCard in listOfOtherChosenCards) {
                         // Mark all cards matched out of game
                         otherCard.matched = YES;
@@ -158,24 +108,13 @@ static const int COST_TO_CHOOSE = 1;
                     // Match failed - decrease score - update play status
                     self.playScore = MISMATCH_PENALTY;
                     self.score -= self.playScore;
-                    self.matchPlay = @"fail";
-                    matchPlay = @"fail";
                     for (Card *otherCard in listOfOtherChosenCards) {
                         // Remove other cards from list of cards chosen for match
                             otherCard.chosen = NO;
                     }
                 }
                 
-                // Add other selected cards to the play
-                for (Card *otherCardInPlay in listOfOtherChosenCards) {
-                    [self.cardsInPlayMutable addObject:otherCardInPlay];
-                    [cardsInPlayMutable addObject:otherCardInPlay]; 
-                }
             }
-            // Add the last play to the game history
-            NSDictionary *historyEntry = @{@"matchPlay" : matchPlay,
-                                           @"cardsInPlay" : [cardsInPlayMutable copy]};
-            [self.mutablePlayHistory addObject:historyEntry];
         }
     }
 }
