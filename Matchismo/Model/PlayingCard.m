@@ -8,23 +8,27 @@
 
 #import "PlayingCard.h"
 
+#define MATCH_COUNT 2
+#define MATCH_SCORE_COMPLETE 4
+#define MATCH_SCORE_PARTIAL 1
+
 @implementation PlayingCard
 
-- (int)matchCount
+- (NSUInteger)matchCount
 {
-    return 2;
+    return MATCH_COUNT;
 }
 
-- (int)match:(NSArray *)otherCards
+- (NSInteger)match:(NSArray *)otherCards
 {
-    int score = 0;
+    NSInteger score = 0;
     
-    if ([otherCards count] == 1) {
+    if ((otherCards.count + 1) == [self matchCount]) {
         PlayingCard *otherCard = [otherCards firstObject];
         if (otherCard.rank == self.rank) {
-            score = 4;
+            score = MATCH_SCORE_COMPLETE;
         } else if ([otherCard.suit isEqualToString:self.suit]) {
-            score = 1;
+            score = MATCH_SCORE_PARTIAL;
         }
     }
     
@@ -37,11 +41,16 @@
     return [rankStrings[self.rank] stringByAppendingString:self.suit];
 }
 
-@synthesize suit = _suit;
-
 + (NSArray *)validSuits
 {
     return @[@"♠",@"♣",@"♥",@"♦"];
+}
+
+@synthesize suit = _suit;
+
+- (NSString *)suit
+{
+    return _suit ? _suit : @"?";
 }
 
 - (void)setSuit:(NSString *)suit
@@ -49,11 +58,6 @@
     if ([[PlayingCard validSuits] containsObject:suit]) {
         _suit = suit;
     }
-}
-
-- (NSString *)suit
-{
-    return _suit ? _suit : @"?";
 }
 
 + (NSArray *)rankStrings

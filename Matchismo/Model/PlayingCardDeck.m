@@ -29,21 +29,4 @@
     return self;
 }
 
-- (void)initWithCardType:(Class)cardClass
-{
-    // Remove existing cards from deck
-    [self reset];
-    
-    if ([[[cardClass alloc] init] isKindOfClass:[PlayingCard class]]) {
-        for (NSString *suit in [cardClass validSuits]) {
-            for (NSUInteger rank = 1; rank <= [cardClass maxRank]; rank++) {
-                PlayingCard *card = [[cardClass alloc] init];
-                card.rank = rank;
-                card.suit = suit;
-                [self addCard:card];
-            }
-        }
-    }
-}
-
 @end

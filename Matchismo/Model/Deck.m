@@ -14,11 +14,6 @@
 
 @implementation Deck
 
-- (void)reset
-{
-    self.cards = nil;
-}
-
 - (NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
@@ -50,6 +45,11 @@
     }
     
     return randomCard;
+}
+
+- (void)reset
+{
+    self.cards = nil;
 }
 
 @end

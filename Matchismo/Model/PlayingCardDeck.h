@@ -9,7 +9,6 @@
 #import "Deck.h"
 
 @interface PlayingCardDeck : Deck
-
-- (void)initWithCardType:(Class) cardClass;
-
+// Override
+// - (instancetype)init;
 @end

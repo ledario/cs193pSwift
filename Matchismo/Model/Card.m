@@ -8,21 +8,25 @@
 
 #import "Card.h"
 
+#define MATCH_COUNT 2
+#define MATCH_SCORE 1
+
 @implementation Card
 
-- (int)matchCount
+- (NSUInteger)matchCount
 {
-    return 1;
+    return MATCH_COUNT;
 }
 
-- (int)match:(NSArray *)otherCards
+- (NSInteger)match:(NSArray *)otherCards
 {
     int score = 0;
     
-    if (otherCards.count == [self matchCount]) {
+    // Attempt a match when the other cards plus the current card is up to the matchCount
+    if ((otherCards.count + 1) == [self matchCount]) {
         for (Card *card in otherCards) {
             if ([card.contents isEqualToString:self.contents]) {
-                score = 1;
+                score = MATCH_SCORE;
             }
         }
     }

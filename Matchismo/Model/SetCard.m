@@ -8,35 +8,39 @@
 
 #import "SetCard.h"
 
+#define MATCH_COUNT 3
+#define MATCH_SCORE_COMPLETE 4
+#define MATCH_SCORE_PARTIAL 1
+
 @implementation SetCard
 
-- (int)matchCount
+- (NSUInteger)matchCount
 {
-    return 3;
+    return MATCH_COUNT;
 }
 
 - (NSString *)contents
 {
-    return [NSString stringWithFormat:@"%@ %@ %@ %@", self.number, self.symbol, self.shading, self.color];
+    return [NSString stringWithFormat:@"%d %@ %@ %@", (int)self.number, self.symbol, self.shading, self.color];
 }
 
 @synthesize number = _number;
 
 + (NSArray *)validNumbers
 {
-    return @[@"one",@"two",@"three"];
+    return @[@1,@2,@3];
 }
 
-- (void)setNumber:(NSString *)number
+- (void)setNumber:(NSUInteger)number
 {
-    if ([[SetCard validNumbers] containsObject:number]) {
+    if ([[SetCard validNumbers] containsObject:[NSNumber numberWithUnsignedInteger:number]]) {
         _number = number;
     }
 }
 
-- (NSString *)number
+- (NSUInteger)number
 {
-    return _number ? _number : @"?";
+    return _number ? _number : 0;
 }
 
 @synthesize symbol = _symbol;
@@ -96,12 +100,12 @@
     return _color ? _color : @"?";
 }
 
-- (int)match:(NSArray *)otherCards
+- (NSInteger)match:(NSArray *)otherCards
 {
-    int numberScore = 0;
-    int symbolScore = 0;
-    int shadingScore = 0;
-    int colorScore = 0;
+    NSInteger numberScore = 0;
+    NSInteger symbolScore = 0;
+    NSInteger shadingScore = 0;
+    NSInteger colorScore = 0;
         
     // Match only when there are 2 other cards
     if ([otherCards count] == 2) {
@@ -111,11 +115,11 @@
         SetCard *candidateTwo = [otherCards lastObject];
         
         // Match number
-        if (([candidateOne.number isEqualToString:self.number] &&
-             [candidateTwo.number isEqualToString:self.number]) ||
-            (![candidateOne.number isEqualToString:self.number] &&
-             ![candidateTwo.number isEqualToString:self.number] &&
-             ![candidateOne.number isEqualToString:candidateTwo.number])) {
+        if ((candidateOne.number == self.number &&
+             candidateTwo.number == self.number) ||
+            (!(candidateOne.number == self.number) &&
+             !(candidateTwo.number == self.number) &&
+             !(candidateOne.number == candidateTwo.number))) {
             numberScore = 1;
         }
         
@@ -148,12 +152,7 @@
         
     }
     // Combinations: 1080 unique sets
-//    if (numberScore == 1 && symbolScore == 0 && shadingScore == 0 && colorScore == 0) {
-//    }
-//    } else {
-//        
-        return numberScore * symbolScore * shadingScore * colorScore * 1080;
-//    }
+    return numberScore * symbolScore * shadingScore * colorScore * 1080;
 }
 
 @end

@@ -9,5 +9,6 @@
 #import "Deck.h"
 
 @interface SetCardDeck : Deck
-
+// Override
+// - (instancetype)init;
 @end

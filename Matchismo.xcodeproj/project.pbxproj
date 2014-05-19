@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0509AACF1856834A000A4934 /* PlayingForThreeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0509AACE1856834A000A4934 /* PlayingForThreeCard.m */; };
 		051138C31854F8BA004278E1 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 051138C21854F8BA004278E1 /* CardMatchingGame.m */; };
 		051D460718B4726300E00BB3 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 051D460618B4726300E00BB3 /* SetCard.m */; };
 		051D460A18B480F500E00BB3 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 051D460918B480F500E00BB3 /* SetCardDeck.m */; };
@@ -45,8 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0509AACD1856834A000A4934 /* PlayingForThreeCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingForThreeCard.h; path = Model/PlayingForThreeCard.h; sourceTree = "<group>"; };
-		0509AACE1856834A000A4934 /* PlayingForThreeCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingForThreeCard.m; path = Model/PlayingForThreeCard.m; sourceTree = "<group>"; };
 		051138C11854F8BA004278E1 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		051138C21854F8BA004278E1 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
 		051D460518B4726300E00BB3 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCard.h; path = Model/SetCard.h; sourceTree = "<group>"; };
@@ -121,8 +118,6 @@
 				054E1C211847E00900A1AEFD /* Card.m */,
 				054E1C241847E29800A1AEFD /* PlayingCard.h */,
 				054E1C251847E29800A1AEFD /* PlayingCard.m */,
-				0509AACD1856834A000A4934 /* PlayingForThreeCard.h */,
-				0509AACE1856834A000A4934 /* PlayingForThreeCard.m */,
 				051D460518B4726300E00BB3 /* SetCard.h */,
 				051D460618B4726300E00BB3 /* SetCard.m */,
 				054E1C271847E85E00A1AEFD /* Deck.h */,
@@ -329,7 +324,6 @@
 				054E1C291847E85E00A1AEFD /* Deck.m in Sources */,
 				053EBD3D19017E0900868E72 /* GameHistoryViewController.m in Sources */,
 				054E1C221847E00900A1AEFD /* Card.m in Sources */,
-				0509AACF1856834A000A4934 /* PlayingForThreeCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

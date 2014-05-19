@@ -43,9 +43,9 @@
         cardSymbol = @"●";
     
     //set number
-    if ([card.number isEqualToString:@"two"]) {
+    if (card.number == 2) {
         cardSymbol = [cardSymbol stringByAppendingString:cardSymbol];
-    } else if ([card.number isEqualToString:@"three"]) {
+    } else if (card.number == 3) {
         cardSymbol = [[cardSymbol stringByAppendingString:cardSymbol] stringByAppendingString:cardSymbol];
     }
     

@@ -20,7 +20,6 @@
 @property (nonatomic, strong) NSMutableArray *cardsInPlayMutable; // of Card
 @property (nonatomic, readwrite) NSArray *playHistory;
 @property (nonatomic, strong) NSMutableArray *mutablePlayHistory;
-//@property (nonatomic, strong) NSDictionary *playResult;
 @end
 
 @implementation CardMatchingGame

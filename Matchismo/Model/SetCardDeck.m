@@ -16,12 +16,12 @@
     self = [super init];
     
     if (self) {
-        for (NSString *number in [SetCard validNumbers]) {
+        for (NSNumber *number in [SetCard validNumbers]) {
             for (NSString *symbol in [SetCard validSymbols]) {
                 for (NSString *shading in [SetCard validShadings]) {
                     for (NSString *color in [SetCard validColors]) {
                         SetCard *card = [[SetCard alloc] init];
-                        card.number = number;
+                        card.number = [number unsignedIntegerValue];
                         card.symbol = symbol;
                         card.shading = shading;
                         card.color = color;
