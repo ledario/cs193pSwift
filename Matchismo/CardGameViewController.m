@@ -9,6 +9,8 @@
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
 
+#pragma mark - Properties
+
 @interface CardGameViewController ()
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -17,12 +19,6 @@
 
 @implementation CardGameViewController
 
-- (IBAction)deal:(UIButton *)sender {
-    self.game = nil;
-    
-    [self updateUI];
-}
-
 - (CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
@@ -30,9 +26,12 @@
     return _game;
 }
 
-- (Deck *)createDeck
-{
-    return nil; // Abstract method to be implemented in concrete class
+#pragma mark - Actions
+
+- (IBAction)deal:(UIButton *)sender {
+    self.game = nil;
+    
+    [self updateUI];
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender
@@ -41,6 +40,13 @@
     [self.game chooseCardAtIndex:chosenButtonIndex];
     [self updateUI];
 }
+
+- (Deck *)createDeck
+{
+    return nil; // Abstract method to be implemented in concrete class
+}
+
+#pragma mark - Draw UI
 
 - (void)updateUI
 {
@@ -69,6 +75,12 @@
     
 }
 
+- (void)setCardTitle:(Card*)card forButton:(UIButton *)button
+// Default implementation to be overriden in concrete class
+{
+    [button setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+}
+
 - (NSString *)titleForCard:(Card *)card
 {
 //    return card.isChosen ? card.contents : @"";
@@ -80,19 +92,5 @@
 {
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
 }
-
--(NSAttributedString *)attributedTitleforCard:(Card *)card
-// Default implementation to be overriden in concrete class
-// The specific class implementation will provide on-screen representation for the value of a card
-{
-    return [[NSAttributedString alloc] initWithString:[self titleForCard:card]];
-}
-
-- (void)setCardTitle:(Card*)card forButton:(UIButton *)button
-// Default implementation to be overriden in concrete class
-{
-    [button setTitle:[self titleForCard:card] forState:UIControlStateNormal];
-}
-
 
 @end
