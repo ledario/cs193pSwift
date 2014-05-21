@@ -617,13 +617,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="n1j-cb-Loy" kind="relationship" relationship="viewControllers" id="PbK-iv-5W2"/>
                         <segue destination="2cu-cS-1vf" kind="relationship" relationship="viewControllers" id="BE2-XP-Feu"/>
                         <segue destination="ae9-Kt-hnN" kind="relationship" relationship="viewControllers" id="VkO-rJ-WQ6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gmI-uL-3HS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="275" y="166"/>
+            <point key="canvasLocation" x="303" y="-139"/>
         </scene>
         <!--Navigation Controller - Card Match-->
         <scene sceneID="W5a-U2-BSq">
@@ -662,6 +663,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHn-PR-dyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="847" y="456"/>
+        </scene>
+        <!--Navigation Controller - Card View-->
+        <scene sceneID="Pd7-ks-Igm">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="n1j-cb-Loy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Card View" id="iL4-XF-SRI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6nB-vO-I2L">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WBr-6S-Jcx" kind="relationship" relationship="rootViewController" id="7IZ-Kb-vjg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pBw-eW-Tzw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="-786"/>
+        </scene>
+        <!--Card Game View Controller - Item-->
+        <scene sceneID="UJ4-gf-4iM">
+            <objects>
+                <viewController id="WBr-6S-Jcx" customClass="CardGameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ql8-OC-R4N"/>
+                        <viewControllerLayoutGuide type="bottom" id="qqs-ke-Ed1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="syA-g3-8RJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esI-aG-etI">
+                                <rect key="frame" x="20" y="84" width="280" height="327"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="esI-aG-etI" firstAttribute="top" secondItem="Ql8-OC-R4N" secondAttribute="bottom" constant="20" id="9rM-iQ-QZr"/>
+                            <constraint firstAttribute="trailing" secondItem="esI-aG-etI" secondAttribute="trailing" constant="20" symbolic="YES" id="PUN-b4-DYq"/>
+                            <constraint firstItem="esI-aG-etI" firstAttribute="leading" secondItem="syA-g3-8RJ" secondAttribute="leading" constant="20" symbolic="YES" id="YB2-1N-rqJ"/>
+                            <constraint firstItem="qqs-ke-Ed1" firstAttribute="top" secondItem="esI-aG-etI" secondAttribute="bottom" constant="20" id="opf-8n-KQw"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ct5-XH-soW"/>
+                    <navigationItem key="navigationItem" id="gXl-qZ-MBr"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="gridView" destination="esI-aG-etI" id="KbM-uh-WQw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="755-Dj-7qv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1378" y="-786"/>
         </scene>
     </scenes>
     <resources>

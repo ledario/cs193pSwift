@@ -11,6 +11,8 @@
 
 @interface CardGameViewController : UIViewController
 
+@property (nonatomic, readonly) NSUInteger cardCount;
+
 // Abstract method to be implemented in concrete class
 - (Deck *)createDeck;
 

@@ -94,7 +94,7 @@ static const int COST_TO_CHOOSE = 1;
             // If there are enough other cards selected for match
             if (listOfOtherChosenCards.count == [card matchCount] - 1) {
                 // Match cards
-                int matchScore = [card match:listOfOtherChosenCards];
+                NSUInteger matchScore = [card match:listOfOtherChosenCards];
                 if (matchScore) {
                     // Match successful - increase score - update play status
                     self.playScore = matchScore * MATCH_BONUS;
