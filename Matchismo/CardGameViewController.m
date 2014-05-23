@@ -7,9 +7,7 @@
 //
 
 #import "CardGameViewController.h"
-#import "CardMatchingGame.h"
-#import "CardView.h"
-#import "Grid.h"
+//#import "CardView.h"
 
 #pragma mark - Properties
 
@@ -18,7 +16,7 @@
 
 @interface CardGameViewController ()
 @property (strong, nonatomic) CardMatchingGame *game;
-@property (nonatomic, readwrite) NSUInteger cardCount;
+@property (nonatomic) NSUInteger cardCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIView *gridView;
@@ -77,9 +75,26 @@
     }
 }
 
-- (void)addCardToGrid:(Grid *)grid atRow:(NSUInteger)row atColumn:(NSUInteger)column
+// Replace with specific card in concrete class
+- (CardView *)drawCardForGrid:(Grid *)grid atRow:(NSUInteger)row atColumn:(NSUInteger)column
 {
-    [self.gridView addSubview:[[CardView alloc] initWithFrame:[grid frameOfCellAtRow:row inColumn:column]]];
+    CardView *cardView = [[CardView alloc] initWithFrame:[grid frameOfCellAtRow:row inColumn:column]];
+    // TODO: check index arithmetic
+    Card *card = [self.game cardAtIndex:row*grid.rowCount+column];
+    cardView.contents = card.contents;
+    return cardView;
+}
+
+// Replace with specific card in concrete class
+- (void)drawCardView:(CardView *)cardView ForCard:(Card *)card
+{
+    cardView.contents = @"King of spade";
+}
+
+// Replace with specific card in concrete class
+- (CardView *)createCardViewWithFrame:(CGRect)frame
+{
+    return [[CardView alloc] initWithFrame:frame];
 }
 
 - (void)updateUI
@@ -95,7 +110,15 @@
     NSUInteger cardsRemaining = self.cardCount;
     for (NSUInteger row = 0; row < rowCount && cardsRemaining; row++) {
         for (NSUInteger column = 0; column < columnCount && cardsRemaining; column++) {
-            [self addCardToGrid:grid atRow:row atColumn:column];
+            //TODO: Check arithmetic
+            Card *card = [self.game cardAtIndex:row*grid.rowCount+column];
+            CGRect cardViewFrame = [grid frameOfCellAtRow:row inColumn:column];
+//            CardView *cardView = [[CardView alloc] initWithFrame:cardViewFrame];
+            CardView *cardView = [self createCardViewWithFrame:cardViewFrame];
+            [self drawCardView:cardView ForCard:card];
+            [cardView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:cardView action:@selector(tapCard:)]];
+            [cardView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:cardView action:@selector(pinch:)]];
+            [self.gridView addSubview:cardView];
             cardsRemaining--;
         }
     }

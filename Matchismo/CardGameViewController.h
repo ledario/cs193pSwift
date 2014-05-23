@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardMatchingGame.h"
 #import "Deck.h"
+#import "Grid.h"
+#import "CardView.h"
 
 @interface CardGameViewController : UIViewController
 
-@property (nonatomic, readonly) NSUInteger cardCount;
+//@property (strong, nonatomic, readonly) CardMatchingGame *game;
+//@property (nonatomic, readonly) NSUInteger cardCount;
 
 // Abstract method to be implemented in concrete class
 - (Deck *)createDeck;
+- (void)drawCardView:(CardView *)cardView ForCard:(Card *)card;
+- (CardView *)createCardViewWithFrame:(CGRect)frame;
 
 @end

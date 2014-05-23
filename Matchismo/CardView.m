@@ -8,9 +8,13 @@
 
 #import "CardView.h"
 
-@implementation CardView
-
 #pragma mark - Properties
+
+@interface CardView()
+//@property (nonatomic) CGFloat faceCardScaleFactor;
+@end
+
+@implementation CardView
 
 @synthesize faceCardScaleFactor = _faceCardScaleFactor;
 
@@ -49,6 +53,25 @@
     return self;
 }
 
+#pragma mark - Gesture Handling
+
+- (void)tapCard:(UITapGestureRecognizer *)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        self.faceUp = !self.faceUp;
+    }
+    [self setNeedsDisplay];
+}
+
+- (void)pinch:(UIPinchGestureRecognizer *)gesture
+{
+    if (self.faceUp && (gesture.state == UIGestureRecognizerStateChanged ||
+        gesture.state == UIGestureRecognizerStateEnded)) {
+        self.faceCardScaleFactor *= gesture.scale;
+        gesture.scale = 1.0;
+    }
+}
+
 #pragma mark - Drawing
 
 #define CORNER_FONT_STANDARD_HEIGHT 180.0
@@ -72,11 +95,14 @@
     
     [[UIColor blackColor] setStroke];
     [roundedRect stroke];
-    
+
+    CGRect imageRect = CGRectInset(self.bounds,
+                                   self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
+                                   self.bounds.size.height * (1.0 - self.faceCardScaleFactor));
     if (self.faceUp) {
-        [self drawContent];
+        [self drawContentsInRect:imageRect];
     } else {
-        [[UIImage imageNamed:@"cardback"] drawInRect:self.bounds];
+        [[UIImage imageNamed:@"cardback"] drawInRect:imageRect];
     }
     
 }
@@ -92,23 +118,19 @@
     CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }
 
-- (void)drawContent
+// Override this method to draw specific card for a concrete class
+- (void)drawContentsInRect:(CGRect)contentsRect
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
-    UIFont *cornerFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    cornerFont = [cornerFont fontWithSize:cornerFont.pointSize * [self cornerScaleFactor]];
+    UIFont *contentsFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    contentsFont = [contentsFont fontWithSize:contentsFont.pointSize * self.faceCardScaleFactor];
     
-    NSAttributedString *cornerText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", self.content] attributes:@{ NSFontAttributeName : cornerFont, NSParagraphStyleAttributeName : paragraphStyle }];
-    
-    CGRect textBounds;
-    textBounds.origin = CGPointMake([self cornerOffset], [self cornerOffset]);
-    textBounds.size.width = self.bounds.size.width - 2 * [self cornerOffset];
-    textBounds.size.height = self.bounds.size.height - 2 * [self cornerOffset];
-
+    NSAttributedString *contentsAttributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", self.contents] attributes:@{ NSFontAttributeName : contentsFont, NSParagraphStyleAttributeName : paragraphStyle }];
+       
     [self pushContext];
-    [cornerText drawInRect:textBounds];
+    [contentsAttributedText drawInRect:contentsRect];
     [self popContext];
 }
 

@@ -680,10 +680,10 @@
             </objects>
             <point key="canvasLocation" x="852" y="-786"/>
         </scene>
-        <!--Card Game View Controller - Item-->
+        <!--Playing Card Game View Controller - Item-->
         <scene sceneID="UJ4-gf-4iM">
             <objects>
-                <viewController id="WBr-6S-Jcx" customClass="CardGameViewController" sceneMemberID="viewController">
+                <viewController id="WBr-6S-Jcx" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ql8-OC-R4N"/>
                         <viewControllerLayoutGuide type="bottom" id="qqs-ke-Ed1"/>

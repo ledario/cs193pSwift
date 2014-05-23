@@ -10,17 +10,21 @@
 
 @interface CardView : UIView
 
-@property (strong, nonatomic) NSString *content;
+@property (strong, nonatomic) NSString *contents;
 @property (nonatomic) BOOL faceUp;
 @property (nonatomic) CGFloat faceCardScaleFactor;
 
-- (CGFloat)cornerScaleFactor;
-- (CGFloat)cornerRadius;
-- (CGFloat)cornerOffset;
+- (void)tapCard:(UITapGestureRecognizer *)gesture;
+- (void)pinch:(UIPinchGestureRecognizer *)gesture;
+
+// Override this method to draw specific card for a concrete class
+- (void)drawContentsInRect:(CGRect)contentsRect;
 
 - (void)pushContext;
 - (void)popContext;
 
-- (void)setUp;
+- (CGFloat)cornerScaleFactor;
+- (CGFloat)cornerRadius;
+- (CGFloat)cornerOffset;
 
 @end

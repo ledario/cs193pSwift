@@ -51,35 +51,35 @@
 //
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:[self cornerRadius]];
-    
-    [roundedRect addClip];
-    
-    [[UIColor whiteColor] setFill];
-    UIRectFill(self.bounds);
-    
-    [[UIColor blackColor] setStroke];
-    [roundedRect stroke];
-    
-    if (self.faceUp) {
-        UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit]];
-        if (faceImage) {
-            CGRect imageRect = CGRectInset(self.bounds,
-                                           self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
-                                           self.bounds.size.height * (1.0 - self.faceCardScaleFactor));
-            [faceImage drawInRect:imageRect]; 
-        } else {
-            [self drawPips];
-        }
-        [self drawCorners];
-    } else {
-        [[UIImage imageNamed:@"cardback"] drawInRect:self.bounds];
-    }
-    
-}
+//- (void)drawRect:(CGRect)rect
+//{
+//    // Drawing code
+//    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:[self cornerRadius]];
+//    
+//    [roundedRect addClip];
+//    
+//    [[UIColor whiteColor] setFill];
+//    UIRectFill(self.bounds);
+//    
+//    [[UIColor blackColor] setStroke];
+//    [roundedRect stroke];
+//    
+//    if (self.faceUp) {
+//        UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit]];
+//        if (faceImage) {
+//            CGRect imageRect = CGRectInset(self.bounds,
+//                                           self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
+//                                           self.bounds.size.height * (1.0 - self.faceCardScaleFactor));
+//            [faceImage drawInRect:imageRect]; 
+//        } else {
+//            [self drawPips];
+//        }
+//        [self drawCorners];
+//    } else {
+//        [[UIImage imageNamed:@"cardback"] drawInRect:self.bounds];
+//    }
+//    
+//}
 
 - (void)pushContextAndRotateUpsideDown
 {
@@ -198,5 +198,35 @@
 //    if (self) [self setUp];
 //    return self;
 //}
+
+// Override:
+// Draw PlayingCard
+- (void)drawContentsInRect:(CGRect)contentsRect
+{
+
+    UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit]];
+    if (faceImage) {
+        CGRect imageRect = CGRectInset(self.bounds,
+                                       self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
+                                       self.bounds.size.height * (1.0 - self.faceCardScaleFactor));
+        [faceImage drawInRect:imageRect];
+    } else {
+        [self drawPips];
+    }
+    [self drawCorners];
+    
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    paragraphStyle.alignment = NSTextAlignmentCenter;
+//    
+//    UIFont *contentsFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+//    contentsFont = [contentsFont fontWithSize:contentsFont.pointSize * self.faceCardScaleFactor];
+//    contentsFont = [contentsFont fontWithSize:contentsFont.pointSize];
+    
+//    NSAttributedString *contentsAttributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d%@", self.rank, self.suit] attributes:@{ NSFontAttributeName : contentsFont, NSParagraphStyleAttributeName : paragraphStyle }];
+    
+//    [self pushContext];
+//    [contentsAttributedText drawInRect:contentsRect];
+//    [self popContext];
+}
 
 @end

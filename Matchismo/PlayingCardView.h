@@ -13,6 +13,5 @@
 @property (nonatomic) NSUInteger rank;
 @property (strong, nonatomic) NSString *suit;
 
-//- (void)pinch:(UIPinchGestureRecognizer *)gesture;
 
 @end
