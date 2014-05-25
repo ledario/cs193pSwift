@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Card.h"
 
 @interface CardView : UIView
 
+@property (strong, nonatomic) Card *card;
 @property (strong, nonatomic) NSString *contents;
-@property (nonatomic) BOOL faceUp;
+@property (nonatomic, getter = isFaceUp) BOOL faceUp;
 @property (nonatomic) CGFloat faceCardScaleFactor;
+
+- (CGFloat)cornerScaleFactor;
+- (CGFloat)cornerRadius;
+- (CGFloat)cornerOffset;
 
 - (void)tapCard:(UITapGestureRecognizer *)gesture;
 - (void)pinch:(UIPinchGestureRecognizer *)gesture;
@@ -23,8 +29,5 @@
 - (void)pushContext;
 - (void)popContext;
 
-- (CGFloat)cornerScaleFactor;
-- (CGFloat)cornerRadius;
-- (CGFloat)cornerOffset;
 
 @end

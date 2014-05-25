@@ -7,7 +7,7 @@
 //
 
 #import "CardGameViewController.h"
-//#import "CardView.h"
+#import "Grid.h"
 
 #pragma mark - Properties
 
@@ -33,7 +33,7 @@
 
 - (NSUInteger)cardCount
 {
-    return CARD_COUNT;
+    return _cardCount = CARD_COUNT;
 }
 
 - (Deck *)createDeck
@@ -76,22 +76,12 @@
 }
 
 // Replace with specific card in concrete class
-- (CardView *)drawCardForGrid:(Grid *)grid atRow:(NSUInteger)row atColumn:(NSUInteger)column
-{
-    CardView *cardView = [[CardView alloc] initWithFrame:[grid frameOfCellAtRow:row inColumn:column]];
-    // TODO: check index arithmetic
-    Card *card = [self.game cardAtIndex:row*grid.rowCount+column];
-    cardView.contents = card.contents;
-    return cardView;
-}
-
-// Replace with specific card in concrete class
 - (void)drawCardView:(CardView *)cardView ForCard:(Card *)card
 {
-    cardView.contents = @"King of spade";
 }
 
 // Replace with specific card in concrete class
+// TODO: replacement implementation with "return nil;"
 - (CardView *)createCardViewWithFrame:(CGRect)frame
 {
     return [[CardView alloc] initWithFrame:frame];
@@ -111,10 +101,10 @@
     for (NSUInteger row = 0; row < rowCount && cardsRemaining; row++) {
         for (NSUInteger column = 0; column < columnCount && cardsRemaining; column++) {
             //TODO: Check arithmetic
-            Card *card = [self.game cardAtIndex:row*grid.rowCount+column];
+            Card *card = [self.game cardAtIndex:row*grid.columnCount+column];
             CGRect cardViewFrame = [grid frameOfCellAtRow:row inColumn:column];
-//            CardView *cardView = [[CardView alloc] initWithFrame:cardViewFrame];
             CardView *cardView = [self createCardViewWithFrame:cardViewFrame];
+            cardView.card = card;
             [self drawCardView:cardView ForCard:card];
             [cardView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:cardView action:@selector(tapCard:)]];
             [cardView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:cardView action:@selector(pinch:)]];
@@ -122,51 +112,6 @@
             cardsRemaining--;
         }
     }
-}
-
-- (UIImage *)backgroundImageForCard:(Card *)card
-{
-    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
-}
-
-- (void)updateUI_Disabled
-{
-    // Update the view with the status of each cards
-    for (UIButton *cardButton in self.cardButtons) {
-        
-        // Identify location of card
-        int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
-        
-        // Reset the card when the game has restarted
-        Card *card = [self.game cardAtIndex:cardButtonIndex];
-        if (card.isChosen || card.isMatched) {
-            [self setCardTitle:card forButton:cardButton];
-        } else {
-            [self setCardTitle:nil forButton:cardButton];
-        }
-        
-        [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
-        
-        // Disable cards that have been matched out of the game
-        cardButton.enabled = !card.isMatched;
-    }
-    // Reset the score when the game has restarted - Match-Count switch enabled
-    int score = self.game.score;
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", score];
-    
-}
-
-- (void)setCardTitle:(Card*)card forButton:(UIButton *)button
-// Default implementation to be overriden in concrete class
-{
-    [button setTitle:[self titleForCard:card] forState:UIControlStateNormal];
-}
-
-- (NSString *)titleForCard:(Card *)card
-{
-//    return card.isChosen ? card.contents : @"";
-    return card.contents;
-
 }
 
 @end
