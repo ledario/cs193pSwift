@@ -22,6 +22,10 @@
 // array of strings representing the set of valid suits
 + (NSArray *)validSuits;
 
+// rankAsString:
+// String representation of rank
+- (NSString *)rankAsString;
+
 // maxRank:
 // the upper value for the number representing rank values
 + (NSUInteger)maxRank;

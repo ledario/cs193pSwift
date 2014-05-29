@@ -24,16 +24,4 @@
     return [[PlayingCardView alloc] initWithFrame:frame];
 }
 
-- (void)drawCardView:(CardView *)cardView ForCard:(Card *)card
-{
-    if ([cardView isKindOfClass:[PlayingCardView class]] && [card isKindOfClass:[PlayingCard class]]) {
-        PlayingCardView *playingCardView = (PlayingCardView *)cardView;
-        if ([playingCardView.card isKindOfClass:[PlayingCard class]] && [card isKindOfClass:[PlayingCard class]]) {
-            PlayingCard *playingCardFromView = (PlayingCard *)playingCardView.card;
-            PlayingCard *playingCard = (PlayingCard *)card;
-            playingCardFromView.suit = playingCard.suit;
-            playingCardFromView.rank = playingCard.rank;
-        }
-    }
-}
 @end

@@ -11,7 +11,7 @@
 
 #pragma mark - Properties
 
-#define CARD_COUNT 12
+#define CARD_COUNT 1
 #define CARD_ASPECT_RATIO 0.6
 
 @interface CardGameViewController ()
@@ -56,6 +56,14 @@
     [self updateUI];
 }
 
+#pragma mark - Delegate callback
+
+- (void)cardHasBeenFlipped:(CardView *)cardView
+{
+    Card *card = (Card *)cardView.card;
+    card.chosen = !card.isChosen;
+}
+
 #pragma mark - Draw UI
 
 -(void)viewWillLayoutSubviews
@@ -73,11 +81,6 @@
     for (CardView *cardView in self.gridView.subviews) {
         [cardView removeFromSuperview];
     }
-}
-
-// Replace with specific card in concrete class
-- (void)drawCardView:(CardView *)cardView ForCard:(Card *)card
-{
 }
 
 // Replace with specific card in concrete class
@@ -104,10 +107,9 @@
             Card *card = [self.game cardAtIndex:row*grid.columnCount+column];
             CGRect cardViewFrame = [grid frameOfCellAtRow:row inColumn:column];
             CardView *cardView = [self createCardViewWithFrame:cardViewFrame];
+            cardView.delegate = self;
             cardView.card = card;
-            [self drawCardView:cardView ForCard:card];
             [cardView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:cardView action:@selector(tapCard:)]];
-            [cardView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:cardView action:@selector(pinch:)]];
             [self.gridView addSubview:cardView];
             cardsRemaining--;
         }

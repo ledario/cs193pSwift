@@ -1,14 +1,14 @@
 //
-//  PlayingCardView.h
-//  SuperCard
+//  SetCardView.h
+//  Matchismo
 //
-//  Created by Dario Vincent on 5/19/14.
+//  Created by Dario Vincent on 5/27/14.
 //  Copyright (c) 2014 cs193p. All rights reserved.
 //
 
 #import "CardView.h"
 
-@interface PlayingCardView : CardView
+@interface SetCardView : CardView
 
 // Override
 // Pair the right kind of card class with view class

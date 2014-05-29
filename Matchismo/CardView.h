@@ -9,25 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "Card.h"
 
+@class CardView;
+
+@protocol CardViewDelegate <NSObject>
+@optional
+- (void)cardHasBeenFlipped:(CardView *)cardView;
+@end
+
 @interface CardView : UIView
 
-@property (strong, nonatomic) Card *card;
-@property (strong, nonatomic) NSString *contents;
-@property (nonatomic, getter = isFaceUp) BOOL faceUp;
-@property (nonatomic) CGFloat faceCardScaleFactor;
+@property (nonatomic, assign) id delegate;
 
-- (CGFloat)cornerScaleFactor;
-- (CGFloat)cornerRadius;
-- (CGFloat)cornerOffset;
+@property (weak, nonatomic) Card *card;
+@property (nonatomic, getter = isFaceUp) BOOL faceUp;
+@property (nonatomic,readonly) CGFloat cornerRadius;
+@property (nonatomic, readonly) CGFloat cornerScaleFactor;
 
 - (void)tapCard:(UITapGestureRecognizer *)gesture;
-- (void)pinch:(UIPinchGestureRecognizer *)gesture;
-
-// Override this method to draw specific card for a concrete class
-- (void)drawContentsInRect:(CGRect)contentsRect;
-
-- (void)pushContext;
-- (void)popContext;
-
 
 @end

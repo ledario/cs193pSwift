@@ -303,7 +303,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1378" y="-139"/>
+            <point key="canvasLocation" x="1381" y="433"/>
+        </scene>
+        <!--Set Card Game View Controller-->
+        <scene sceneID="jbF-dm-bpn">
+            <objects>
+                <viewController id="Ed0-Fj-y7l" customClass="SetCardGameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ItR-6M-czg"/>
+                        <viewControllerLayoutGuide type="bottom" id="AeZ-c6-OT7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OGJ-Hc-vN9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KbW-P4-dbh">
+                                <rect key="frame" x="20" y="84" width="280" height="327"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KbW-P4-dbh" firstAttribute="top" secondItem="ItR-6M-czg" secondAttribute="bottom" constant="20" id="IGz-Hi-eFn"/>
+                            <constraint firstItem="AeZ-c6-OT7" firstAttribute="top" secondItem="KbW-P4-dbh" secondAttribute="bottom" constant="20" id="Ptx-xW-BNW"/>
+                            <constraint firstAttribute="trailing" secondItem="KbW-P4-dbh" secondAttribute="trailing" constant="20" symbolic="YES" id="Z7C-Mn-ilS"/>
+                            <constraint firstItem="KbW-P4-dbh" firstAttribute="leading" secondItem="OGJ-Hc-vN9" secondAttribute="leading" constant="20" symbolic="YES" id="ZAT-zc-mCU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Z9L-h9-v0c"/>
+                    <connections>
+                        <outlet property="gridView" destination="KbW-P4-dbh" id="C3R-IN-esD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3eU-Pw-ugL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1378" y="-161"/>
         </scene>
         <!--Set Card Game View Controller-->
         <scene sceneID="0fN-h4-tpC">
@@ -604,7 +639,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mb5-Zm-iIs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1373" y="456"/>
+            <point key="canvasLocation" x="1376" y="1028"/>
+        </scene>
+        <!--Navigation Controller - SetCard-->
+        <scene sceneID="bfv-gI-No0">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="HfS-Kz-oLT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="SetCard" id="INe-rJ-Tbs"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Oc4-He-qYn">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ed0-Fj-y7l" kind="relationship" relationship="rootViewController" id="Rto-BD-Exf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rdl-tJ-NvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="-161"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6ZT-gO-Ojh">
@@ -617,9 +668,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="n1j-cb-Loy" kind="relationship" relationship="viewControllers" id="PbK-iv-5W2"/>
-                        <segue destination="2cu-cS-1vf" kind="relationship" relationship="viewControllers" id="BE2-XP-Feu"/>
-                        <segue destination="ae9-Kt-hnN" kind="relationship" relationship="viewControllers" id="VkO-rJ-WQ6"/>
+                        <segue destination="n1j-cb-Loy" kind="relationship" relationship="viewControllers" id="9cX-ZY-Lkc"/>
+                        <segue destination="HfS-Kz-oLT" kind="relationship" relationship="viewControllers" id="4eZ-TQ-qsh"/>
+                        <segue destination="ae9-Kt-hnN" kind="relationship" relationship="viewControllers" id="UYX-5J-CUb"/>
+                        <segue destination="2cu-cS-1vf" kind="relationship" relationship="viewControllers" id="zDg-7J-5R6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gmI-uL-3HS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -643,7 +695,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyz-pU-JGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="-139"/>
+            <point key="canvasLocation" x="857" y="433"/>
         </scene>
         <!--Navigation Controller - Set Match-->
         <scene sceneID="6ee-wE-7hJ">
@@ -662,13 +714,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHn-PR-dyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="847" y="456"/>
+            <point key="canvasLocation" x="852" y="1028"/>
         </scene>
-        <!--Navigation Controller - Card View-->
+        <!--Navigation Controller - PlayingCard-->
         <scene sceneID="Pd7-ks-Igm">
             <objects>
                 <navigationController definesPresentationContext="YES" id="n1j-cb-Loy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Card View" id="iL4-XF-SRI"/>
+                    <tabBarItem key="tabBarItem" title="PlayingCard" id="iL4-XF-SRI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6nB-vO-I2L">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

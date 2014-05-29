@@ -8,11 +8,8 @@
 
 #import "SetCardGameViewController.h"
 #import "SetCardDeck.h"
+#include "SetCardView.h"
 #import "SetCard.h"
-
-@interface SetCardGameViewController ()
-
-@end
 
 @implementation SetCardGameViewController
 
@@ -20,6 +17,11 @@
 {
     Deck *deck = [[SetCardDeck alloc] init];
     return deck;
+}
+
+- (CardView *)createCardViewWithFrame:(CGRect)frame
+{
+    return [[SetCardView alloc] initWithFrame:frame];
 }
 
 - (void)setCardTitle:(Card *)card forButton:(UIButton *)button {

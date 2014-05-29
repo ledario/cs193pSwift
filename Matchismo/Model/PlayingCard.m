@@ -66,6 +66,11 @@
              @"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
 }
 
+- (NSString *)rankAsString
+{
+    return [[self class] rankStrings][self.rank];
+}
+
 + (NSUInteger)maxRank
 {
     return [[self rankStrings] count]-1;

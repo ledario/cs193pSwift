@@ -10,4 +10,10 @@
 
 @interface SetCardGameViewController : CardGameViewController
 
+// Override
+// - (Deck *)createDeck;
+
+// Override
+// - (CardView *)createCardViewWithFrame:(CGRect)frame;
+
 @end
