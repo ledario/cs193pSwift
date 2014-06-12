@@ -20,6 +20,7 @@
 		0551417318BBAB9500F94ED4 /* PlayingCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0551417218BBAB9500F94ED4 /* PlayingCardGameViewController.m */; };
 		0551417618BBD64800F94ED4 /* SetCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0551417518BBD64800F94ED4 /* SetCardGameViewController.m */; };
 		05951924192A885000BEB0A3 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951923192A885000BEB0A3 /* Grid.m */; };
+		059EFAB91947CD5F0035F8A4 /* CardMathingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059EFAB81947CD5F0035F8A4 /* CardMathingGame.swift */; };
 		05BABCC1183AD2090009215A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BABCC0183AD2090009215A /* Foundation.framework */; };
 		05BABCC3183AD2090009215A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BABCC2183AD2090009215A /* CoreGraphics.framework */; };
 		05BABCC5183AD2090009215A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BABCC4183AD2090009215A /* UIKit.framework */; };
@@ -73,6 +74,8 @@
 		0551417518BBD64800F94ED4 /* SetCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardGameViewController.m; sourceTree = "<group>"; };
 		05951922192A885000BEB0A3 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		05951923192A885000BEB0A3 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
+		059EFAB71947CD5E0035F8A4 /* Matchismo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Matchismo-Bridging-Header.h"; sourceTree = "<group>"; };
+		059EFAB81947CD5F0035F8A4 /* CardMathingGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardMathingGame.swift; sourceTree = "<group>"; };
 		05BABCBD183AD2090009215A /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BABCC0183AD2090009215A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05BABCC2183AD2090009215A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -136,6 +139,7 @@
 			children = (
 				051138C11854F8BA004278E1 /* CardMatchingGame.h */,
 				051138C21854F8BA004278E1 /* CardMatchingGame.m */,
+				059EFAB81947CD5F0035F8A4 /* CardMathingGame.swift */,
 				054E1C201847E00900A1AEFD /* Card.h */,
 				054E1C211847E00900A1AEFD /* Card.m */,
 				054E1C241847E29800A1AEFD /* PlayingCard.h */,
@@ -148,6 +152,7 @@
 				054E1C2B1847EB8F00A1AEFD /* PlayingCardDeck.m */,
 				051D460818B480F500E00BB3 /* SetCardDeck.h */,
 				051D460918B480F500E00BB3 /* SetCardDeck.m */,
+				059EFAB71947CD5E0035F8A4 /* Matchismo-Bridging-Header.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				054E1C261847E29800A1AEFD /* PlayingCard.m in Sources */,
 				0551417318BBAB9500F94ED4 /* PlayingCardGameViewController.m in Sources */,
 				051D460718B4726300E00BB3 /* SetCard.m in Sources */,
+				059EFAB91947CD5F0035F8A4 /* CardMathingGame.swift in Sources */,
 				050E7FD41935939000E0A531 /* SetCardView.m in Sources */,
 				051138C31854F8BA004278E1 /* CardMatchingGame.m in Sources */,
 				054E1C2C1847EB8F00A1AEFD /* PlayingCardDeck.m in Sources */,
@@ -474,13 +480,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Matchismo/Matchismo-Prefix.pch";
 				INFOPLIST_FILE = "Matchismo/Matchismo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Matchismo/Matchismo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -490,13 +500,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Matchismo/Matchismo-Prefix.pch";
 				INFOPLIST_FILE = "Matchismo/Matchismo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Matchismo/Matchismo-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

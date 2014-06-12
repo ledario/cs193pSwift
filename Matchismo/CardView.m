@@ -11,6 +11,7 @@
 #pragma mark - Properties
 
 @interface CardView()
+@property (weak, nonatomic,readwrite) Card *card;
 @property (nonatomic, readwrite) CGFloat cornerRadius;
 @property (nonatomic, readwrite) CGFloat cornerScaleFactor;
 @end
@@ -49,11 +50,20 @@
 }
 
 // Override
-// Designated initializer
+// Disable the inherited designated initializer
 - (id)initWithFrame:(CGRect)frame
 {
+    return nil;
+}
+
+// Designated Initializer
+- (instancetype)initWithCard:(Card *)card andFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
-    if (self) [self setUp];
+    if (self) {
+        self.card = card;
+        [self setUp];
+    }
     return self;
 }
 
@@ -62,16 +72,20 @@
 - (void)tapCard:(UITapGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        [self.delegate cardHasBeenFlipped:self];
+        __weak CardView *weakSelf = self;        
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{ [weakSelf.delegate cardViewWillFlip:weakSelf]; }
+                        completion:^(BOOL finished){ [weakSelf.delegate cardViewHasFlipped:weakSelf]; }
+         ];
     }
     [self setNeedsDisplay];
 }
 
 #pragma mark - Drawing
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)drawCardBase
 {
     // Drawing card shape
     UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:[self cornerRadius]];
@@ -84,8 +98,13 @@
     [[UIColor blackColor] setStroke];
     [roundedRect stroke];
     
-    // Override drawRect:
-    // in subclass to draw specific card content
+}
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    [self drawCardBase];
 }
 
 @end

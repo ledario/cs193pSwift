@@ -17,4 +17,8 @@
 // Override
 // - (void)drawRect:(CGRect)rect
 
+// Override
+// Designated Initializer
+// -(instancetype)initWithCard:(Card *)card andFrame:(CGRect)frame;
+
 @end

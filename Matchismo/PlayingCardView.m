@@ -9,6 +9,10 @@
 #import "PlayingCardView.h"
 #import "PlayingCard.h"
 
+@interface CardView()
+- (void)drawCardBase;
+@end
+
 #pragma mark - Properties
 
 @interface PlayingCardView()
@@ -24,14 +28,16 @@
 
 - (CGFloat)cornerOffset { return self.cornerRadius / 3.0; }
 
-- (void)setCard:(Card *)card
+#pragma mark - Initialization
+
+// Designated Initializer
+- (instancetype)initWithCard:(Card *)card andFrame:(CGRect)frame
 {
-    if ([card isKindOfClass:[PlayingCard class]]) {
-        super.card = card;
-        // TODO: Question for Ken
-        // Why is there not a _card value defined in this subclass?
-        // _card = card;
+    self = [super initWithCard:card andFrame:frame];
+    if (![card isKindOfClass:[PlayingCard class]]) {
+        self = nil;
     }
+    return self;
 }
 
 #pragma mark - Drawing
@@ -55,15 +61,14 @@
     CGContextRotateCTM(context, M_PI);
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Draw card shape
-    // TODO: Question for Ken
-    // Is there a way to accomplish this whithout explicit call to drawRect?
-    [super drawRect:rect];
+//- (void)drawCardBase {
+//    
+//}
 
+- (void)drawCardContent {
+    // Draw card shape
+    [self drawCardBase];
+    
     // Draw card contents
     CGRect imageRect = CGRectInset(self.bounds,
                                    self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
@@ -73,7 +78,13 @@
     } else {
         [[UIImage imageNamed:@"cardback"] drawInRect:imageRect];
     }
-    
+}
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    [self drawCardContent];
 }
 
 #pragma mark - Draw Contents

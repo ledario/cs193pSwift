@@ -38,6 +38,7 @@
  * return the card at the given index
  */
 - (Card *)cardAtIndex:(NSUInteger)index;
+- (void)chooseCard:(Card *)card;
 
 @end
 

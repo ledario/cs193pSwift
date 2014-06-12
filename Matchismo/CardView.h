@@ -13,18 +13,22 @@
 
 @protocol CardViewDelegate <NSObject>
 @optional
-- (void)cardHasBeenFlipped:(CardView *)cardView;
+- (void)cardViewWillFlip:(CardView *)cardView;
+- (void)cardViewHasFlipped:(CardView *)cardView;
 @end
 
 @interface CardView : UIView
 
 @property (nonatomic, assign) id delegate;
 
-@property (weak, nonatomic) Card *card;
+@property (weak, nonatomic,readonly) Card *card;
 @property (nonatomic, getter = isFaceUp) BOOL faceUp;
 @property (nonatomic,readonly) CGFloat cornerRadius;
 @property (nonatomic, readonly) CGFloat cornerScaleFactor;
 
 - (void)tapCard:(UITapGestureRecognizer *)gesture;
+
+// Designated Initializer
+-(instancetype)initWithCard:(Card *)card andFrame:(CGRect)frame;
 
 @end

@@ -31,6 +31,11 @@
     return @[@1,@2,@3];
 }
 
++ (NSUInteger)maxNumber
+{
+    return [[self validNumbers] count];
+}
+
 - (void)setNumber:(NSUInteger)number
 {
     if ([[SetCard validNumbers] containsObject:[NSNumber numberWithUnsignedInteger:number]]) {
@@ -153,6 +158,17 @@
     }
     // Combinations: 1080 unique sets
     return numberScore * symbolScore * shadingScore * colorScore * 1080;
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[SetCard class]]) {
+        return (self.number == ((SetCard *)object).number)
+            && [self.symbol isEqualToString:((SetCard *)object).symbol]
+            && [self.shading isEqualToString:((SetCard *)object).shading]
+            && [self.color isEqualToString:((SetCard *)object).color];
+    } else {
+        return NO;
+    }
 }
 
 @end

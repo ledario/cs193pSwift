@@ -83,4 +83,13 @@
     }
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[PlayingCard class]]) {
+        return [self.suit isEqualToString:((PlayingCard *)object).suit] &&
+        (self.rank == ((PlayingCard *)object).rank);
+    } else {
+        return NO;
+    }
+}
+
 @end

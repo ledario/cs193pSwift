@@ -19,9 +19,9 @@
     return deck;
 }
 
-- (CardView *)createCardViewWithFrame:(CGRect)frame
+- (CardView *)createCardViewWithCard:(Card *)card andFrame:(CGRect)frame
 {
-    return [[SetCardView alloc] initWithFrame:frame];
+    return [[SetCardView alloc] initWithCard:card andFrame:frame];
 }
 
 - (void)setCardTitle:(Card *)card forButton:(UIButton *)button {

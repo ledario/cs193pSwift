@@ -44,4 +44,8 @@
 //   "?": not a valid string for color
 + (NSArray *)validColors;
 
+// maxRank:
+// the upper value for the number representing rank values
++ (NSUInteger)maxNumber;
+
 @end

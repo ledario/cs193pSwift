@@ -34,4 +34,12 @@
     return score;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[Card class]]) {
+        return [self.contents isEqualToString:((Card *)object).contents];
+    } else {
+        return NO;
+    }
+}
+
 @end

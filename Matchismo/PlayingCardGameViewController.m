@@ -19,9 +19,9 @@
     return deck;
 }
 
-- (CardView *)createCardViewWithFrame:(CGRect)frame
+- (CardView *)createCardViewWithCard:(Card *)card andFrame:(CGRect)frame
 {
-    return [[PlayingCardView alloc] initWithFrame:frame];
+    return [[PlayingCardView alloc] initWithCard:card andFrame:frame];
 }
 
 @end

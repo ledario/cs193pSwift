@@ -15,5 +15,5 @@
 
 // Override
 // - (CardView *)createCardViewWithFrame:(CGRect)frame;
-
+// - (CardView *)createCardViewWithCard:(Card *)card andFrame:(CGRect)frame;
 @end

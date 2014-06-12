@@ -70,6 +70,11 @@ static const int COST_TO_CHOOSE = 1;
     // Identify chosen card at given location
     Card *card = [self cardAtIndex:index];
     
+    [self chooseCard:card];
+}
+
+- (void)chooseCard:(Card *)card
+{
     // Work only on cards not yet matched
     if (!card.isMatched) {
         
@@ -83,14 +88,14 @@ static const int COST_TO_CHOOSE = 1;
                 // Remove from chosen list - flip card over
                 card.chosen = NO;
             }
-        // This card is not already chosen
+            // This card is not already chosen
         } else {
             // Initialize play history variables
             // Mark chosen and decrease score (cost of choosing)
             card.chosen = YES;
             self.playScore = COST_TO_CHOOSE;
             self.score -= self.playScore;
-
+            
             // If there are enough other cards selected for match
             if (listOfOtherChosenCards.count == [card matchCount] - 1) {
                 // Match cards
@@ -110,14 +115,12 @@ static const int COST_TO_CHOOSE = 1;
                     self.score -= self.playScore;
                     for (Card *otherCard in listOfOtherChosenCards) {
                         // Remove other cards from list of cards chosen for match
-                            otherCard.chosen = NO;
+                        otherCard.chosen = NO;
                     }
                 }
-                
             }
         }
     }
 }
-
 
 @end
